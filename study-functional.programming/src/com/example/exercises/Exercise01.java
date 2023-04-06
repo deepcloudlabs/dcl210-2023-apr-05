@@ -3,11 +3,11 @@ package com.example.exercises;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
-import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
 public class Exercise01 {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		var numbers = List.of(10,20,15,30,25,5,40,35);
 		var sum = 0;
