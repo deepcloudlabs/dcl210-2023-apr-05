@@ -1,6 +1,8 @@
 # Compiled class file
 *.class
 .metadata
+target
+bin
 
 # Log file
 *.log
