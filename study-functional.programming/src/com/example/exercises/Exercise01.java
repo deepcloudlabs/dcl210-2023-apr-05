@@ -18,16 +18,34 @@ public class Exercise01 {
 			}
 		}
 		System.out.println("Sum of cube of event numbers in numbers: %d".formatted(sum));
-		// Functional Programming
+		int state = 42;
+		// Functional Programming: Java SE 8
 		//  i. HoF (Higher-Order Function): filter, map, reduce
-		// ii. Pure Function: side-effect -> lambda expression -> optimized anonymous class
+		// ii. Pure Function: side-effect -> i) lambda expression -> optimized anonymous class
+		//                                  ii) method reference : Integer::sum
 		// function -> Functional Interface -> SAM
+		Predicate<Integer> even = t -> t%2 == 0; 
+		Function<Integer,Integer> toCube = v -> v*v*v;
+		BinaryOperator<Integer> accumulate = (s,n) -> s+n;
 		sum = 
-		numbers.stream().filter( t -> t%2 == 0 ) // 10,20,30,40
-		                .map( v -> v*v*v ) // 1000,8000,9000,64000
-		                .reduce(0, (s,n) -> s+n); 
+		numbers.stream().parallel()
+		                .filter( Number::even ) // 10,20,30,40
+		                .map( Number::toCube ) // 1000,8000,9000,64000
+		                .reduce(0, Integer::sum ); 
 		System.out.println("Sum of cube of event numbers in numbers: %d".formatted(sum));
 
 	}
 
+}
+
+interface Number {
+	public static int toCube(int x) {
+		return x*x*x;
+	}
+	public static boolean even(int x) {
+		return x%2 == 0;
+	}
+	public static boolean odd(int x) {
+		return !even(x);
+	}
 }
