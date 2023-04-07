@@ -6,8 +6,10 @@ import java.text.RuleBasedCollator;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -56,8 +58,17 @@ public class Exercise01 {
 		nums.add(4);
 		nums.add(15);
 		nums.add(4);
+		nums.forEach(System.out::println);
 		// 4. Map<K, V>
-
+        // Key --> Value
+		Map<String,Integer> areaCodes = new HashMap<>(1_000_000); // LinkedHashMap, TreeMap, IdentityMap,... 
+		areaCodes.put("istanbul-anadolu", 216);
+		areaCodes.put("istanbul-avrupa", 212);
+		areaCodes.put("ankara", 312);
+		System.out.println(areaCodes.get("ankara"));
+		areaCodes.keySet().forEach(System.out::println);
+		areaCodes.values().forEach(System.out::println);
+		areaCodes.entrySet().forEach(entry -> System.out.println("%24s -> %3d".formatted(entry.getKey(),entry.getValue())));
 	}
 
 }
