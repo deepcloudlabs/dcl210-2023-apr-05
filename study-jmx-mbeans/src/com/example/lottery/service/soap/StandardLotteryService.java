@@ -7,6 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlElement;
 
 import com.example.lottery.jmx.QualityMetric;
 import com.example.lottery.jmx.WebServiceQualitySamplerMXBean;
@@ -20,7 +21,7 @@ implements LotteryService, WebServiceQualitySamplerMXBean{
     private long totalResponseTime;
     
 	@Override
-	public List<Integer> draw(int max, int size) {
+	public List<Integer> draw(@XmlElement(name = "max") int max,@XmlElement(name = "size") int size) {
 		long start = System.nanoTime();
 		List<Integer> numbers = ThreadLocalRandom.current()
 		        .ints(1, 60)
@@ -33,7 +34,7 @@ implements LotteryService, WebServiceQualitySamplerMXBean{
 		totalResponseTime += (stop-start);
 		counter++;
 		double averageResponseTime = (double)totalResponseTime / counter;
-		if (averageResponseTime > 200_000.) {
+		if (averageResponseTime > 100_000.) {
 			setChanged();
 			notifyObservers(getQualityMetric());
 		}

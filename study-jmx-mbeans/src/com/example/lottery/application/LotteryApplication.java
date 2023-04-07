@@ -14,7 +14,7 @@ import com.example.lottery.jmx.WebServiceQualitySampler;
 import com.example.lottery.service.soap.StandardLotteryService;
 
 public class LotteryApplication {
-
+	// http://localhost:8100/lottery?WSDL
 	public static void main(String[] args) throws MalformedObjectNameException, InstanceAlreadyExistsException, MBeanRegistrationException, NotCompliantMBeanException {
 		MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
 		StandardLotteryService lotteryService = new StandardLotteryService();

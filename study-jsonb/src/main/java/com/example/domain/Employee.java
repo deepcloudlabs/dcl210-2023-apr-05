@@ -3,11 +3,13 @@ package com.example.domain;
 import java.math.BigDecimal;
 
 import javax.json.bind.annotation.JsonbNumberFormat;
+import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbTransient;
 
 public class Employee {
 	private String identityNo;
 	private String fullName;
+	@JsonbProperty("eposta")
 	private String email;
 	@JsonbTransient
 	private String iban;
